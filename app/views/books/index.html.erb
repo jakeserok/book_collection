@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-10">
+    <h1>Books</h1>
+  </div>
+  <div class="col">
+    <%= link_to 'New Book', new_book_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
+
+<% @books.each do |book| %>
+  <div class="card">      
+    <div class="card-header">
+      <span><%= book.title %></span>
+    </div>
+    <div class="card-body">
+      <% if book.cover? %>
+        <%= image_tag book.cover.url, size: "200x200" %>
+      <% end %>
+      <p><%= book.description %></p>
+      <span><%= link_to 'Show', book %> | </span>
+      <span><%= link_to 'Edit', edit_book_path(book) %> | </span>
+      <span><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+    </div>
+  </div>
+<% end %>
+
+<div class="digg-pagination">
+  <div class="page-info">
+    <%= page_entries_info @books %>
+  </div>
+  <%= will_paginate @books, container: true %>
+</div>

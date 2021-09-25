@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">
+    <strong>Title:</strong>
+    <%= @book.title %>
+  </div>
+
+  <div class="card-body">
+    <% if @book.cover? %>
+      <%= image_tag @book.cover.url, size: "200x200" %>
+    <% end %>
+    <%= @book.description %>
+    <br/>
+
+    <span><%= link_to 'Edit', edit_book_path(@book) %> | </span>
+    <span><%= link_to 'Back', books_path %></span>
+  </div>
